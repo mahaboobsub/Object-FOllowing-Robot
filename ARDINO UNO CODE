@@ -1,0 +1,46 @@
+#define echoPin1 4
+#define trigPin1 5
+int LMT1=8;
+int LMT2=9; // Motor Terminals M1
+int RMT1=6;
+int RMT2=7; // Motor Teminals M2 
+
+void setup() 
+{
+ pinMode(trigPin1, OUTPUT);
+ pinMode(echoPin1, INPUT);
+ pinMode(LMT1,OUTPUT); // Motors are declared as output 
+ pinMode(LMT2,OUTPUT); 
+ pinMode(RMT1,OUTPUT); 
+ pinMode(RMT2,OUTPUT); 
+}
+
+ void loop() 
+ {
+  int distance1;
+  int duration1;
+  digitalWrite(trigPin1, HIGH);
+  delay(1000);
+  digitalWrite(trigPin1, LOW);
+  duration1=pulseIn(echoPin1, HIGH);
+  distance1=(duration1/2)/29.1;
+  delay(500);
+  digitalWrite(LMT1,HIGH);
+  digitalWrite(LMT2,LOW);
+  digitalWrite(RMT1,HIGH); 
+  digitalWrite(RMT2,LOW);
+  if(distance1<40)
+  {
+ digitalWrite(LMT1,HIGH);
+ digitalWrite(LMT2,LOW);
+ digitalWrite(RMT1,HIGH); 
+ digitalWrite(RMT2,LOW); 
+  }
+else{
+ digitalWrite(LMT1,LOW);
+ digitalWrite(LMT2,LOW);
+ digitalWrite(RMT1,LOW);
+ digitalWrite(RMT2,LOW); 
+ 
+}
+}
